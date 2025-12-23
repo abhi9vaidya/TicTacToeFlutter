@@ -23,7 +23,6 @@ class _GameTileState extends State<GameTile> with SingleTickerProviderStateMixin
   late AnimationController _controller;
   late Animation<double> _drawAnimation;
   late Animation<double> _scaleAnimation;
-  Player? _previousPlayer;
 
   @override
   void initState() {
@@ -61,8 +60,6 @@ class _GameTileState extends State<GameTile> with SingleTickerProviderStateMixin
     if (widget.player == Player.none && oldWidget.player != Player.none) {
       _controller.reset();
     }
-    
-    _previousPlayer = oldWidget.player;
   }
 
   @override
