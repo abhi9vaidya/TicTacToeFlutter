@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:math' as math;
 import '../utils/constants.dart';
 
@@ -386,14 +387,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ],
                   stops: [0, _titleGlowAnimation.value, 1],
                 ).createShader(bounds),
-                child: const Text(
+                child: Text(
                   'TIC TAC TOE',
-                  style: TextStyle(
+                  style: GoogleFonts.orbitron(
                     fontSize: 48,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w900,
                     color: Colors.white,
-                    letterSpacing: 6,
-                    shadows: [Shadow(color: AppColors.primary, blurRadius: 20)],
+                    letterSpacing: 4,
+                    shadows: [
+                      const Shadow(color: AppColors.primary, blurRadius: 20),
+                      const Shadow(color: AppColors.secondary, blurRadius: 40),
+                    ],
                   ),
                 ),
               ),
@@ -410,12 +414,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       builder: (context, child) {
         return Opacity(
           opacity: _titleAnimation.value.clamp(0, 1),
-          child: const Text(
+          child: Text(
             'The Classic Strategy Game',
-            style: TextStyle(
-              fontSize: 16,
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
               color: AppColors.textSecondary,
-              letterSpacing: 2,
+              letterSpacing: 3,
+              fontStyle: FontStyle.italic,
             ),
           ),
         );
@@ -449,11 +455,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(color: AppColors.gridLine, width: 1),
                   ),
-                  child: const Text(
+                  child: Text(
                     'VS',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                    style: GoogleFonts.orbitron(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
                       color: AppColors.textSecondary,
                     ),
                   ),
@@ -597,16 +603,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 children: [
                   Text(
                     label,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                    style: GoogleFonts.orbitron(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
                       color: Colors.white,
-                      letterSpacing: 1,
+                      letterSpacing: 2,
                     ),
                   ),
                   Text(
                     subtitle,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 12,
                       color: Colors.white.withOpacity(0.8),
                     ),
