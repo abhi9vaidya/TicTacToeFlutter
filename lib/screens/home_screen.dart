@@ -133,11 +133,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         _buildModeButtons(isWide),
 
                         const SizedBox(height: 40),
-
-                        // Credits
-                        _buildCredits(),
-
-                        const SizedBox(height: 20),
                       ],
                     ),
                   ),
@@ -439,35 +434,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildCredits() {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          decoration: BoxDecoration(
-            color: AppColors.surface.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                Icons.flutter_dash,
-                color: AppColors.primary.withOpacity(0.7),
-                size: 18,
-              ),
-              const SizedBox(width: 8),
-              const Text(
-                'Made with Flutter',
-                style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 
