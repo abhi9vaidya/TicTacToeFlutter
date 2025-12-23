@@ -1,107 +1,55 @@
-# 🎮 Tic Tac Toe Flutter
+# Tic Tac Toe
 
-A simple animated Tic Tac Toe game built with Flutter featuring smooth animations, AI opponent with difficulty levels, and a stunning neon cyberpunk theme.
+A Tic Tac Toe game built with Flutter featuring animations and an AI opponent.
 
-![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
+## Features
 
-## ✨ Features
+- **Two Game Modes** - Play with a friend or against AI
+- **AI Difficulty** - Easy, Medium, and Hard (minimax algorithm)
+- **Animations** - Smooth drawing and transition effects
+- **Score Tracking** - Track wins and draws
+- **Dark Theme** - Clean neon-styled interface
 
-- **🎨 Stunning UI** - Neon cyberpunk dark theme with smooth gradients
-- **🎯 Two Game Modes**
-  - 2 Players - Play with a friend
-  - VS AI - Challenge the computer
-- **🤖 AI Difficulty Levels**
-  - Easy - Random moves
-  - Medium - Mix of random and optimal
-  - Hard - Unbeatable minimax algorithm
-- **🎬 Smooth Animations**
-  - X and O drawing animations
-  - Winning line animation with glow effect
-  - Score board transitions
-  - Board scale animations
-- **📊 Score Tracking** - Keeps track of wins and draws
-- **🔄 Quick Reset** - Start a new game instantly
+## Tech Stack
 
-## 🛠️ Tech Stack
+- Flutter / Dart
+- Provider (state management)
+- Google Fonts
 
-- **Flutter** - Cross-platform UI framework
-- **Dart** - Programming language
-- **Provider** - State management
-- **Custom Painters** - For X, O, and winning line animations
+## Getting Started
 
-## 📁 Project Structure
-
-```
-lib/
-├── main.dart                 # App entry point
-├── providers/
-│   └── game_provider.dart    # Game state & logic
-├── screens/
-│   ├── home_screen.dart      # Main menu
-│   └── game_screen.dart      # Game board
-├── widgets/
-│   ├── game_tile.dart        # Animated tile
-│   └── winning_line.dart     # Win line animation
-└── utils/
-    ├── constants.dart        # Colors, sizes, etc.
-    └── theme.dart            # App theme config
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Flutter SDK (>=3.10.0)
-- Dart SDK (>=3.0.0)
-
-### Installation
-
-1. Clone the repository:
 ```bash
+# Clone
 git clone https://github.com/abhi9vaidya/TicTacToeFlutter.git
-```
-
-2. Navigate to project directory:
-```bash
 cd TicTacToeFlutter
-```
 
-3. Install dependencies:
-```bash
+# Install & Run
 flutter pub get
-```
-
-4. Run the app:
-```bash
 flutter run
 ```
 
-## 🎮 How to Play
+## Project Structure
 
-1. Choose your game mode (2 Players or VS AI)
-2. If playing VS AI, select difficulty from the settings icon
-3. Tap on any empty tile to make your move
-4. First player to get 3 in a row wins!
-5. Tap "NEW GAME" to restart
+```
+lib/
+├── main.dart              # Entry point
+├── providers/             # Game state & logic
+├── screens/               # Home, Game, Splash screens
+├── widgets/               # Game tile, Winning line
+└── utils/                 # Constants, Theme
+```
 
-## 🎨 Color Palette
+## How to Play
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Cyan | `#00F5FF` | Player X |
-| Magenta | `#FF00E5` | Player O |
-| Yellow | `#FFE500` | Winning line |
-| Dark Blue | `#0A0E17` | Background |
+1. Select game mode (2 Players or VS AI)
+2. Tap empty tiles to make moves
+3. Get 3 in a row to win
+4. Tap "NEW GAME" to restart
 
-## 📄 License
+## License
 
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
+MIT License
 
 ---
 
-Made with ❤️ and Flutter
+Developed by **Abhinav Vaidya**
