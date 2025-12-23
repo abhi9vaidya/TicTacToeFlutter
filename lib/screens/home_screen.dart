@@ -376,20 +376,30 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       builder: (context, child) {
         return Transform.scale(
           scale: _titleAnimation.value,
-          child: Text(
-            'TIC TAC TOE',
-            style: GoogleFonts.orbitron(
-              fontSize: 48,
-              fontWeight: FontWeight.w900,
-              letterSpacing: 4,
-              foreground: Paint()
-                ..shader = const LinearGradient(
-                  colors: [AppColors.primary, AppColors.secondary],
-                ).createShader(const Rect.fromLTWH(0, 0, 300, 60)),
-              shadows: [
-                const Shadow(color: AppColors.primary, blurRadius: 30),
-                const Shadow(color: AppColors.secondary, blurRadius: 50),
+          child: ShaderMask(
+            blendMode: BlendMode.srcATop,
+            shaderCallback: (bounds) => LinearGradient(
+              colors: [
+                AppColors.primary,
+                AppColors.secondary,
+                AppColors.primary,
               ],
+              stops: [0, _titleGlowAnimation.value, 1],
+            ).createShader(bounds),
+            child: Text(
+              'TIC TAC TOE',
+              style: GoogleFonts.orbitron(
+                fontSize: 48,
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
+                letterSpacing: 4,
+                shadows: [
+                  Shadow(
+                    color: AppColors.primary.withOpacity(0.5),
+                    blurRadius: 15,
+                  ),
+                ],
+              ),
             ),
           ),
         );
