@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
 import '../providers/game_provider.dart';
@@ -243,10 +244,10 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
               const SizedBox(width: 8),
               Text(
                 game.gameMode == GameMode.vsAI ? 'VS AI' : '2 Players',
-                style: const TextStyle(
+                style: GoogleFonts.orbitron(
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.w600,
-                  fontSize: 14,
+                  fontSize: 13,
                 ),
               ),
             ],
@@ -348,10 +349,10 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
           children: [
             Text(
               label,
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 color: isSelected ? AppColors.primary : AppColors.textPrimary,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                fontSize: 15,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+                fontSize: 14,
               ),
             ),
             if (isSelected) ...[
@@ -429,24 +430,22 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
         ),
         child: Column(
           children: [
-            AnimatedDefaultTextStyle(
-              duration: AppDurations.fast,
-              style: TextStyle(
+            Text(
+              label,
+              style: GoogleFonts.orbitron(
                 color: isActive || isWinner ? color : AppColors.textSecondary,
-                fontSize: isActive ? 14 : 12,
-                fontWeight: isActive ? FontWeight.bold : FontWeight.w500,
+                fontSize: isActive ? 13 : 11,
+                fontWeight: isActive ? FontWeight.w700 : FontWeight.w500,
               ),
-              child: Text(label),
             ),
             const SizedBox(height: 4),
-            AnimatedDefaultTextStyle(
-              duration: AppDurations.fast,
-              style: TextStyle(
+            Text(
+              score.toString(),
+              style: GoogleFonts.orbitron(
                 color: color,
-                fontSize: isWinner ? 32 : 26,
-                fontWeight: FontWeight.bold,
+                fontSize: isWinner ? 30 : 24,
+                fontWeight: FontWeight.w900,
               ),
-              child: Text(score.toString()),
             ),
           ],
         ),
@@ -623,13 +622,13 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
             children: [
               Icon(Icons.refresh_rounded, color: AppColors.primary, size: 22),
               const SizedBox(width: 10),
-              const Text(
+              Text(
                 'NEW GAME',
-                style: TextStyle(
+                style: GoogleFonts.orbitron(
                   color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1,
-                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 2,
+                  fontSize: 14,
                 ),
               ),
             ],
