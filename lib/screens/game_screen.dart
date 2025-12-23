@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
 import '../providers/game_provider.dart';
@@ -244,7 +243,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
               const SizedBox(width: 8),
               Text(
                 game.gameMode == GameMode.vsAI ? 'VS AI' : '2 Players',
-                style: GoogleFonts.orbitron(
+                style: TextStyle(fontFamily: 'Orbitron',
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.w600,
                   fontSize: 13,
@@ -349,7 +348,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
           children: [
             Text(
               label,
-              style: GoogleFonts.poppins(
+              style: TextStyle(fontFamily: 'Poppins',
                 color: isSelected ? AppColors.primary : AppColors.textPrimary,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                 fontSize: 14,
@@ -432,7 +431,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
           children: [
             Text(
               label,
-              style: GoogleFonts.orbitron(
+              style: TextStyle(fontFamily: 'Orbitron',
                 color: isActive || isWinner ? color : AppColors.textSecondary,
                 fontSize: isActive ? 13 : 11,
                 fontWeight: isActive ? FontWeight.w700 : FontWeight.w500,
@@ -441,7 +440,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
             const SizedBox(height: 4),
             Text(
               score.toString(),
-              style: GoogleFonts.orbitron(
+              style: TextStyle(fontFamily: 'Orbitron',
                 color: color,
                 fontSize: isWinner ? 30 : 24,
                 fontWeight: FontWeight.w900,
@@ -624,7 +623,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
               const SizedBox(width: 10),
               Text(
                 'NEW GAME',
-                style: GoogleFonts.orbitron(
+                style: TextStyle(fontFamily: 'Orbitron',
                   color: AppColors.primary,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 2,
@@ -638,3 +637,6 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
     );
   }
 }
+
+
+

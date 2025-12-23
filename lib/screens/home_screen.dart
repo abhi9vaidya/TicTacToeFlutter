@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'dart:math' as math;
 import '../utils/constants.dart';
 
@@ -388,7 +387,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ).createShader(bounds),
             child: Text(
               'TIC TAC TOE',
-              style: GoogleFonts.orbitron(
+              style: TextStyle(fontFamily: 'Orbitron',
                 fontSize: 48,
                 fontWeight: FontWeight.w900,
                 color: Colors.white,
@@ -415,7 +414,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           opacity: _titleAnimation.value.clamp(0, 1),
           child: Text(
             'The Classic Strategy Game',
-            style: GoogleFonts.poppins(
+            style: TextStyle(fontFamily: 'Poppins',
               fontSize: 15,
               fontWeight: FontWeight.w400,
               color: AppColors.textSecondary,
@@ -456,7 +455,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                   child: Text(
                     'VS',
-                    style: GoogleFonts.orbitron(
+                    style: TextStyle(fontFamily: 'Orbitron',
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
                       color: AppColors.textSecondary,
@@ -602,7 +601,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 children: [
                   Text(
                     label,
-                    style: GoogleFonts.orbitron(
+                    style: TextStyle(fontFamily: 'Orbitron',
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
@@ -611,7 +610,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                   Text(
                     subtitle,
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(fontFamily: 'Poppins',
                       fontSize: 12,
                       color: Colors.white.withOpacity(0.8),
                     ),
@@ -711,3 +710,6 @@ class OPainter extends CustomPainter {
   @override
   bool shouldRepaint(OPainter oldDelegate) => oldDelegate.progress != progress;
 }
+
+
+

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'providers/game_provider.dart';
 import 'screens/splash_screen.dart';
@@ -9,6 +10,9 @@ import 'utils/theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Allow Google Fonts to fetch over HTTP for mobile
+  GoogleFonts.config.allowRuntimeFetching = true;
 
   // Set preferred orientations
   SystemChrome.setPreferredOrientations([
