@@ -21,23 +21,23 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    
+
     _boardController = AnimationController(
       duration: const Duration(milliseconds: 600),
       vsync: this,
     );
-    
+
     _boardScaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
       CurvedAnimation(parent: _boardController, curve: Curves.elasticOut),
     );
-    
+
     _boardController.forward();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    
+
     if (!_initialized) {
       final mode = ModalRoute.of(context)?.settings.arguments as GameMode?;
       if (mode != null) {
@@ -59,9 +59,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: AppColors.backgroundGradient,
-        ),
+        decoration: const BoxDecoration(gradient: AppColors.backgroundGradient),
         child: SafeArea(
           child: Consumer<GameProvider>(
             builder: (context, game, child) {
@@ -69,27 +67,27 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                 children: [
                   // Header with back button
                   _buildHeader(context, game),
-                  
+
                   const Spacer(),
-                  
+
                   // Score board
                   _buildScoreBoard(game),
-                  
+
                   const SizedBox(height: 30),
-                  
+
                   // Current player indicator
                   _buildTurnIndicator(game),
-                  
+
                   const SizedBox(height: 30),
-                  
+
                   // Game board
                   _buildGameBoard(game),
-                  
+
                   const Spacer(),
-                  
+
                   // Reset button
                   _buildResetButton(context, game),
-                  
+
                   const SizedBox(height: 30),
                 ],
               );
@@ -124,9 +122,9 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
               ),
             ),
           ),
-          
+
           const Spacer(),
-          
+
           // Game mode label
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -142,9 +140,9 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
               ),
             ),
           ),
-          
+
           const Spacer(),
-          
+
           // Difficulty selector (only for AI mode)
           if (game.gameMode == GameMode.vsAI)
             _buildDifficultySelector(game)
@@ -163,16 +161,10 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Icon(
-          Icons.tune,
-          color: AppColors.textPrimary,
-          size: 20,
-        ),
+        child: const Icon(Icons.tune, color: AppColors.textPrimary, size: 20),
       ),
       color: AppColors.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       onSelected: (difficulty) => game.setDifficulty(difficulty),
       itemBuilder: (context) => [
         _buildDifficultyItem(Difficulty.easy, '😊 Easy', game.difficulty),
@@ -194,8 +186,12 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
           Text(
             label,
             style: TextStyle(
-              color: current == value ? AppColors.primary : AppColors.textPrimary,
-              fontWeight: current == value ? FontWeight.bold : FontWeight.normal,
+              color: current == value
+                  ? AppColors.primary
+                  : AppColors.textPrimary,
+              fontWeight: current == value
+                  ? FontWeight.bold
+                  : FontWeight.normal,
             ),
           ),
           if (current == value) ...[
@@ -289,7 +285,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   Widget _buildTurnIndicator(GameProvider game) {
     String message;
     Color color;
-    
+
     if (game.isGameOver) {
       if (game.winner != null) {
         if (game.gameMode == GameMode.vsAI && game.winner == Player.o) {
@@ -309,11 +305,14 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
       if (game.gameMode == GameMode.vsAI && game.currentPlayer == Player.o) {
         message = '🤖 AI Turn';
       } else {
-        message = '${game.currentPlayer == Player.x ? '❌' : '⭕'} Player ${game.currentPlayer == Player.x ? 'X' : 'O'}\'s Turn';
+        message =
+            '${game.currentPlayer == Player.x ? '❌' : '⭕'} Player ${game.currentPlayer == Player.x ? 'X' : 'O'}\'s Turn';
       }
-      color = game.currentPlayer == Player.x ? AppColors.playerX : AppColors.playerO;
+      color = game.currentPlayer == Player.x
+          ? AppColors.playerX
+          : AppColors.playerO;
     }
-    
+
     return AnimatedSwitcher(
       duration: AppDurations.medium,
       child: Text(
@@ -331,48 +330,68 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   Widget _buildGameBoard(GameProvider game) {
     return ScaleTransition(
       scale: _boardScaleAnimation,
-      child: Container(
-        padding: const EdgeInsets.all(AppSizes.gridSpacing),
-        margin: const EdgeInsets.symmetric(horizontal: AppSizes.paddingLarge),
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          borderRadius: BorderRadius.circular(AppSizes.borderRadiusLarge),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: Stack(
-            children: [
-              // Grid of tiles
-              GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: AppSizes.gridSpacing,
-                  crossAxisSpacing: AppSizes.gridSpacing,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Calculate board size based on available space
+          final maxSize = constraints.maxWidth < constraints.maxHeight
+              ? constraints.maxWidth
+              : constraints.maxHeight;
+          final boardSize = maxSize.clamp(200.0, 400.0);
+
+          return Container(
+            width: boardSize,
+            height: boardSize,
+            padding: const EdgeInsets.all(AppSizes.gridSpacing),
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: BorderRadius.circular(AppSizes.borderRadiusLarge),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
                 ),
-                itemCount: 9,
-                itemBuilder: (context, index) {
-                  return GameTile(
-                    player: game.board[index],
-                    onTap: () => game.makeMove(index),
-                    isWinningTile: game.winningLine?.contains(index) ?? false,
-                  );
-                },
-              ),
-              
-              // Winning line overlay
-              if (game.winningLine != null)
-                WinningLine(winningLine: game.winningLine!),
-            ],
-          ),
-        ),
+              ],
+            ),
+            child: Stack(
+              children: [
+                // Grid of tiles
+                Column(
+                  children: [
+                    for (int row = 0; row < 3; row++)
+                      Expanded(
+                        child: Row(
+                          children: [
+                            for (int col = 0; col < 3; col++)
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(
+                                    AppSizes.gridSpacing / 2,
+                                  ),
+                                  child: GameTile(
+                                    player: game.board[row * 3 + col],
+                                    onTap: () => game.makeMove(row * 3 + col),
+                                    isWinningTile:
+                                        game.winningLine?.contains(
+                                          row * 3 + col,
+                                        ) ??
+                                        false,
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
+
+                // Winning line overlay
+                if (game.winningLine != null)
+                  WinningLine(winningLine: game.winningLine!),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
@@ -397,11 +416,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.refresh,
-              color: AppColors.primary,
-              size: 20,
-            ),
+            Icon(Icons.refresh, color: AppColors.primary, size: 20),
             const SizedBox(width: 8),
             const Text(
               'NEW GAME',
