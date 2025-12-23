@@ -49,23 +49,6 @@ class AppTheme {
         ),
       ),
       
-      // Card theme
-      cardTheme: CardTheme(
-        color: AppColors.surface,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSizes.borderRadius),
-        ),
-      ),
-      
-      // Dialog theme
-      dialogTheme: DialogTheme(
-        backgroundColor: AppColors.surface,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSizes.borderRadiusLarge),
-        ),
-      ),
-      
       // Font family
       fontFamily: 'Roboto',
     );
